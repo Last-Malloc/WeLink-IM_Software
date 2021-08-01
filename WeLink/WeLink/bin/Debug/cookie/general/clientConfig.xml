@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configs>
+  <config>
+    <key>ip</key>
+    <value>127.0.0.1</value>
+  </config>
+  <config>
+    <key>port1</key>
+    <value>50000</value>
+  </config>
+  <config>
+    <key>port2</key>
+    <value>50001</value>
+  </config>
+  <config>
+    <key>closeAppNotMin</key>
+    <value>0</value>
+  </config>
+  <config>
+    <key>0000000000文件保存路径</key>
+    <value>D:\Z-D盘桌面\操作系统课设\版本更新1.1.0\WeLink\WeLink\bin\Debug\cookie\userdata\0000000000\file</value>
+  </config>
+  <config>
+    <key>1704040214文件保存路径</key>
+    <value>D:\Z-D盘桌面\操作系统课设\版本1.1.0\WeLink\WeLink\bin\Debug\cookie\userdata\1704040214\file</value>
+  </config>
+  <config>
+    <key>1161361626文件保存路径</key>
+    <value>D:\Z-D盘桌面\操作系统课设\版本1.1.0\WeLink\WeLink\bin\Debug\cookie\userdata\1161361626\file</value>
+  </config>
+</configs>

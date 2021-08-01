@@ -1,0 +1,57 @@
+DELETE FROM USERINFO;
+INSERT INTO userinfo(uCardID, uPassWord, uName, uLife)
+VALUES('1704040210', '123456', '张三', 'Hello World!!!');
+INSERT INTO userinfo(uCardID, uPassWord, uName, uLife)
+VALUES('1704040211', '123456', '李四', 'Hello World!!!');
+INSERT INTO userinfo(uCardID, uPassWord, uName, uLife)
+VALUES('1704040212', '123456', '王五', 'Hello World!!!');
+INSERT INTO userinfo(uCardID, uPassWord, uName, uLife)
+VALUES('1704040214', '123456', '孙六', 'Hello World!!!');
+INSERT INTO userinfo(uCardID, uPassWord, uName, uLife)
+VALUES('1704040215', '123456', '卢七', 'Hello World!!!');
+INSERT INTO userinfo(uCardID, uPassWord, uName, uLife)
+VALUES('1704040216', '123456', '杨八', 'Hello World!!!');
+INSERT INTO userinfo(uCardID, uPassWord, uName, uLife)
+VALUES('1704040217', '123456', '韩九', 'Hello World!!!');
+INSERT INTO userinfo(uCardID, uPassWord, uName, uLife)
+VALUES('1704040218', '123456', '孔十', 'Hello World!!!');
+INSERT INTO userinfo(uCardID, uPassWord, uName, uLife)
+VALUES('1704040219', '123456', '铁柱', 'Hello World!!!');
+INSERT INTO userinfo(uCardID, uPassWord, uName, uLife, uEmail)
+VALUES('1704040213', '123456', '卢宪涛', 'Hello World!!!', '');
+
+DELETE FROM GroupInfo;
+INSERT INTO GroupInfo VALUES('0000000001', '测试群1', '这是一个测试群', '1704040210', 'C');
+INSERT INTO GroupInfo VALUES('0000000002', '群测试1', '这是一个测试群', '1704040211', 'Q');
+
+DELETE FROM FriendList;
+INSERT INTO friendlist(fCardID, fFriendID, fRemark, fFirstAlpha) VALUES('1704040210', '1704040211', '李四', 'L');
+INSERT INTO friendlist(fCardID, fFriendID, fRemark, fFirstAlpha) VALUES('1704040211', '1704040210', '张三', 'Z');
+INSERT INTO friendlist(fCardID, fFriendID, fRemark, fFirstAlpha) VALUES('1704040210', '1704040212', '王五', 'W');
+INSERT INTO friendlist(fCardID, fFriendID, fRemark, fFirstAlpha) VALUES('1704040212', '1704040210', '张三', 'Z');
+INSERT INTO friendlist(fCardID, fFriendID, fRemark, fFirstAlpha) VALUES('1704040210', '1704040213', '卢宪涛', 'L');
+INSERT INTO friendlist(fCardID, fFriendID, fRemark, fFirstAlpha) VALUES('1704040213', '1704040210', '张三', 'Z');
+INSERT INTO friendlist(fCardID, fFriendID, fRemark, fFirstAlpha) VALUES('1704040210', '1704040214', '孙六', 'S');
+INSERT INTO friendlist(fCardID, fFriendID, fRemark, fFirstAlpha) VALUES('1704040214', '1704040210', '张三', 'Z');
+INSERT INTO friendlist(fCardID, fFriendID, fRemark, fFirstAlpha) VALUES('1704040210', '1704040215', '卢七', 'L');
+INSERT INTO friendlist(fCardID, fFriendID, fRemark, fFirstAlpha) VALUES('1704040215', '1704040210', '张三', 'Z');
+INSERT INTO friendlist(fCardID, fIDType, fFriendID, fRemark, fFirstAlpha) VALUES('1704040210', '是', '0000000001', '张三三', 'Z');
+INSERT INTO friendlist(fCardID, fIDType, fFriendID, fRemark, fFirstAlpha) VALUES('1704040211', '是', '0000000001', '李四四', 'L');
+INSERT INTO friendlist(fCardID, fIDType, fFriendID, fRemark, fFirstAlpha) VALUES('1704040212', '是', '0000000001', '王五五', 'W');
+INSERT INTO friendlist(fCardID, fIDType, fFriendID, fRemark, fFirstAlpha) VALUES('1704040213', '是', '0000000001', '卢宪涛', 'L');
+INSERT INTO friendlist(fCardID, fIDType, fFriendID, fRemark, fFirstAlpha) VALUES('1704040214', '是', '0000000001', '孙六六', 'S');
+INSERT INTO friendlist(fCardID, fIDType, fFriendID, fRemark, fFirstAlpha) VALUES('1704040215', '是', '0000000001', '卢七七', 'L');
+INSERT INTO friendlist(fCardID, fIDType, fFriendID, fRemark, fFirstAlpha) VALUES('1704040210', '是', '0000000002', '张三三', 'Z');
+INSERT INTO friendlist(fCardID, fIDType, fFriendID, fRemark, fFirstAlpha) VALUES('1704040211', '是', '0000000002', '李四四', 'L');
+INSERT INTO friendlist(fCardID, fIDType, fFriendID, fRemark, fFirstAlpha) VALUES('1704040212', '是', '0000000002', '王五五', 'W');
+
+DELETE FROM AddRequestInfo;
+
+DELETE FROM ChatInfo;
+
+DELETE FROM Recent;
+INSERT INTO Recent(rCardID, rPassWord, rName, rAutoLogin, rRememPW) VALUES('1704040210', '123456', '张三', 1, 1);
+INSERT INTO Recent(rCardID, rPassWord, rName, rAutoLogin, rRememPW) VALUES('1704040211', '123456', '李四', 0, 1);
+INSERT INTO Recent(rCardID, rPassWord, rName, rAutoLogin, rRememPW) VALUES('1704040212', '123456', '王五', 0, 0);
+INSERT INTO Recent(rCardID, rPassWord, rName, rAutoLogin, rRememPW) VALUES('1704040213', '123456', '卢宪涛', 1, 1);
+INSERT INTO Recent(rCardID, rPassWord, rName, rAutoLogin, rRememPW) VALUES('1704040214', '123456', '孙六', 0, 0);

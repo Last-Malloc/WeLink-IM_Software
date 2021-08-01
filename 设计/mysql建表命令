@@ -1,0 +1,136 @@
+#mysql建表命令
+#存储过程
+DROP PROCEDURE getRandomCardID;
+CREATE PROCEDURE getRandomCardID(OUT cardID CHAR(10))
+BEGIN
+DECLARE cnt INT;
+REPEAT
+	SELECT FLOOR((RAND() * 1e10)) INTO cardID;
+	SELECT COUNT(*) INTO cnt FROM userinfo WHERE uCardID = cardID;
+UNTIL cnt = 0 END REPEAT;
+END;
+DROP PROCEDURE getRandomGID;
+CREATE PROCEDURE getRandomGID(OUT groupID CHAR(10))
+BEGIN
+DECLARE cnt INT;
+REPEAT
+	SELECT FLOOR((RAND() * 1e10)) INTO groupID;
+	SELECT COUNT(*) INTO cnt FROM groupinfo WHERE gID = groupID;
+UNTIL cnt = 0 END REPEAT;
+END;
+#用户信息表
+DROP TABLE UserInfo;
+CREATE TABLE UserInfo
+(
+	uUpdateTime CHAR(16) DEFAULT'2020/01/01 00:00',
+	uCardID CHAR(10) PRIMARY KEY,	
+	uPassWord VARCHAR(20) NOT NULL,
+	uName VARCHAR(10) NOT NULL,
+	uSex enum('男', '女') NOT NULL DEFAULT '男',
+	uError INT NOT NULL DEFAULT 0,
+	uLogOutDate CHAR(16) DEFAULT'2020/01/01 00:00',
+	uLoginDate CHAR(8) DEFAULT'20200101',
+	uLife VARCHAR(100) DEFAULT '',
+	uEmail VARCHAR(100) DEFAULT '',
+	uPassFace enum('是', '否') NOT NULL DEFAULT '否'
+);
+#群组信息表
+DROP TABLE GroupInfo;
+CREATE TABLE GroupInfo
+(
+	gID CHAR(10) PRIMARY KEY,
+	gName VARCHAR(20) NOT NULL,
+	gAffiche VARCHAR(100) DEFAULT'',
+	gMaster CHAR(10) NOT NULL REFERENCES userinfo(uCardID),
+	gFirstAlpha CHAR(1) NOT NULL DEFAULT'Z'
+);
+#好友列表
+DROP TABLE FriendList;
+CREATE TABLE FriendList
+(
+		fCardID CHAR(10) REFERENCES userinfo(uCardID),
+		fIDType enum('是', '否') NOT NULL DEFAULT '否',
+		fFriendID CHAR(10),
+		fFirstAlpha CHAR(1) NOT NULL DEFAULT'Z',
+		fRemark VARCHAR(20) DEFAULT'',
+		fAddWay enum('是', '否') NOT NULL DEFAULT '否',
+		PRIMARY KEY FriendList(fCardID, fFriendID,fIDType)
+);
+#好友/群添加申请表
+DROP TABLE AddRequestInfo;
+create table AddRequestInfo
+(
+	aCardID char(10) not null,
+	aIDType enum('是', '否') NOT NULL DEFAULT '否',
+	afCardID char(10) not null,
+	afIDType enum('是', '否') NOT NULL DEFAULT '否',
+	aTime char(16) not null,
+	aInfo varchar(100) DEFAULT'',
+	primary key(aCardID, aIDType, afCardID, afIDType, aTime)
+);
+#登录数据统计
+DROP TABLE LoginStatisticsData;
+CREATE TABLE LoginStatisticsData
+(
+	yearMonthDay CHAR(8) PRIMARY KEY,
+	todayLoginNum int NOT NULL,
+	todayMaxNum int NOT NULL
+);
+INSERT INTO LoginStatisticsData VALUES('20200101', 0, 0);#该条记录为其他所有记录的和
+#登录日志表
+DROP TABLE LoginLogs;
+CREATE TABLE LoginLogs
+(
+	logCardID char(10) REFERENCES userinfo(uCardID),
+	logLoginDate VARCHAR(50) NOT NULL,
+	logIP VARCHAR(20) NOT NULL,
+	logPort VARCHAR(10) NOT NULL,
+	logLoginType VARCHAR(10) NOT NULL,
+	PRIMARY KEY(logCardID, logLoginDate)
+);
+#聊天记录表
+DROP TABLE ChatInfo;
+CREATE TABLE ChatInfo
+(
+	cCardID char(10),
+	cfCardID char(10),
+	cSendType enum('0','1'),
+	cTime char(16),
+	cSecond char(5),
+	cInfoType enum('0','1','2'),
+	cInfo varchar(300) default'',
+	primary key(cCardID, cfCardID, cSendType, cTime, cSecond)
+);
+
+--sqlite建表命令
+--最近登录表
+DROP TABLE Recent;
+CREATE TABLE Recent
+(
+	rCardID CHAR(10) PRIMARY KEY,	
+	rPassWord VARCHAR(20) NOT NULL,
+	rName VARCHAR(10) NOT NULL,
+	rAutoLogin enum(0, 1) NOT NULL DEFAULT 0,
+	rRememPW enum(0, 1) NOT NULL DEFAULT 0,
+	rInsertTime timestamp NOT NULL DEFAULT(datetime(CURRENT_TIMESTAMP,'localtime'))
+);
+--聊天记录表
+DROP TABLE ChatInfo;
+CREATE TABLE ChatInfo
+(
+	cfCardID char(10),
+	cSendType char(1),
+	cTime char(16),
+	cSecond char(5),
+	cInfoType char(1) not null,
+	cInfo varchar(300) default'',
+	primary key(cfCardID, cSendType, cTime, cSecond)
+);
+--聊天现场保存表
+DROP TABLE ChatStatus;
+CREATE TABLE ChatStatus
+(
+	fCardID char(10),
+	fIDType char(1),
+	primary key(fCardID, fIDType)
+);
